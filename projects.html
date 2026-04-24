@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects — Kenny Chung</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo"><a href="index.html">Kenny Chung</a></div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html" class="nav-active">Projects</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero -->
+    <div class="projects-hero">
+      <h1>My <span>Projects</span></h1>
+      <p>Things I've built while learning. More coming as I progress through the roadmap.</p>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" onclick="filter('all', this)">All</button>
+      <button class="filter-btn" onclick="filter('html', this)">HTML / CSS</button>
+      <button class="filter-btn" onclick="filter('javascript', this)">JavaScript</button>
+      <button class="filter-btn" onclick="filter('react', this)">React</button>
+      <button class="filter-btn" onclick="filter('typescript', this)">TypeScript</button>
+      <button class="filter-btn" onclick="filter('nodejs', this)">Node.js</button>
+    </div>
+
+    <!-- Projects -->
+    <div class="projects-main">
+      <div class="projects-count" id="count">Showing 3 projects</div>
+
+      <div class="projects-page-grid" id="grid">
+
+        <!-- Project 1: Portfolio (featured) -->
+        <div class="project-card-full featured" data-tags="html javascript">
+          <div class="card-thumbnail card-thumbnail-blue">&lt;/&gt;</div>
+          <div class="card-inner">
+            <div class="card-body">
+              <div class="card-header">
+                <div class="card-title">Portfolio Website</div>
+                <span class="card-status status-live">Live</span>
+              </div>
+              <div class="card-desc">
+                Personal portfolio site built from scratch with vanilla HTML, CSS, and JavaScript.
+                Features a responsive two-column layout, project grid, and multi-page navigation.
+                Built during Phase 1 of my developer roadmap.
+              </div>
+              <div class="card-tags">
+                <span class="card-tag">HTML</span>
+                <span class="card-tag">CSS</span>
+                <span class="card-tag">JavaScript</span>
+                <span class="card-tag">Flexbox</span>
+                <span class="card-tag">Grid</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="card-link">↗ Live Site</a>
+              <a href="https://github.com/kenny1112/portfolio" target="_blank" class="card-link">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: React Portfolio -->
+        <div class="project-card-full" data-tags="react typescript">
+          <div class="card-thumbnail card-thumbnail-amber">⚛</div>
+          <div class="card-body">
+            <div class="card-header">
+              <div class="card-title">React Portfolio v2</div>
+              <span class="card-status status-wip">In Progress</span>
+            </div>
+            <div class="card-desc">
+              Rebuilding this portfolio with React, TypeScript, and Tailwind CSS.
+              Will include dark mode, animations, and dynamic data rendering.
+            </div>
+            <div class="card-tags">
+              <span class="card-tag">React</span>
+              <span class="card-tag">TypeScript</span>
+              <span class="card-tag">Tailwind</span>
+              <span class="card-tag">Vite</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-link-disabled">↗ Live Site</span>
+            <span class="card-link-disabled">GitHub →</span>
+          </div>
+        </div>
+
+        <!-- Project 3: REST API -->
+        <div class="project-card-full" data-tags="nodejs javascript">
+          <div class="card-thumbnail card-thumbnail-green">API</div>
+          <div class="card-body">
+            <div class="card-header">
+              <div class="card-title">REST API — Task System</div>
+              <span class="card-status status-planned">Planned</span>
+            </div>
+            <div class="card-desc">
+              A full CRUD REST API built with Node.js, Express, and PostgreSQL.
+              Planned for Phase 2 of the developer roadmap. Will include Postman collection
+              and full DB schema.
+            </div>
+            <div class="card-tags">
+              <span class="card-tag">Node.js</span>
+              <span class="card-tag">Express</span>
+              <span class="card-tag">PostgreSQL</span>
+              <span class="card-tag">REST API</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-link-disabled">↗ Live Site</span>
+            <span class="card-link-disabled">GitHub →</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2026 Kenny Chung</p>
+      <div class="footer-links">
+        <a href="https://github.com/kenny1112">GitHub</a>
+        <a href="mailto:Jaing6456@gmail.com">Email</a>
+      </div>
+    </footer>
+
+    <script>
+      function filter(tag, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const cards = document.querySelectorAll('.project-card-full');
+        let visible = 0;
+
+        cards.forEach(card => {
+          const tags = card.dataset.tags || '';
+          const show = tag === 'all' || tags.includes(tag);
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+
+        document.getElementById('count').textContent =
+          `Showing ${visible} project${visible !== 1 ? 's' : ''}`;
+      }
+    </script>
+
+  </body>
+</html>
